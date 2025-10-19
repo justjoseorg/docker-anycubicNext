@@ -8,6 +8,7 @@ LABEL maintainer="justjoseorg"
 ENV TITLE=AnycubicSlicerNext \
     NO_GAMEPAD=true
 
+USER root
 RUN \
   echo "**** install packages ****" && \
   add-apt-repository ppa:xtradeb/apps && \
@@ -47,3 +48,6 @@ RUN \
 EXPOSE 3001
 VOLUME /config
 VOLUME /tmp
+
+USER abc
+CMD AnycubicSlicerNext
