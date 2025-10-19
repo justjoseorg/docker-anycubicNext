@@ -31,6 +31,7 @@ RUN \
     libwebkit2gtk-4.1-0 \
     libwx-perl && \
   echo "**** Install Anycubic slicer latest ****" && \
+  echo "deb [trusted=yes] https://cdn-universe-slicer.anycubic.com/prod $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/acnext.list > /dev/null && \
   apt install -y anycubicslicernext && \
   echo "**** cleanup ****" && \
   apt-get autoclean && \
