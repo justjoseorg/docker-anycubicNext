@@ -2,11 +2,7 @@
 
 FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
 
-# set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="thelamer"
+LABEL maintainer="justjoseorg"
 
 # title
 ENV TITLE=OrcaSlicer \
@@ -50,9 +46,6 @@ RUN \
     /var/lib/apt/lists/* \
     /var/tmp/* \
     /tmp/*
-
-# add local files
-COPY /root /
 
 # ports and volumes
 EXPOSE 3001
