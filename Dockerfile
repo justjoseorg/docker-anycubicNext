@@ -48,4 +48,4 @@ VOLUME /config
 VOLUME /tmp
 VOLUME /root
 
-CMD /usr/bin/AnycubicSlicerNext
+CMD cd /config && /usr/bin/AnycubicSlicerNext
