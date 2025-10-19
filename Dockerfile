@@ -5,7 +5,6 @@ FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG ORCASLICER_VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
@@ -40,21 +39,8 @@ RUN \
     libgstreamer-plugins-bad1.0 \
     libwebkit2gtk-4.1-0 \
     libwx-perl && \
-  echo "**** install orcaslicer from appimage ****" && \
-  if [ -z ${ORCASLICER_VERSION+x} ]; then \
-    ORCASLICER_VERSION=$(curl -sX GET "https://api.github.com/repos/SoftFever/OrcaSlicer/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
-  fi && \
-  RELEASE_URL=$(curl -sX GET "https://api.github.com/repos/SoftFever/OrcaSlicer/releases/latest"     | awk '/url/{print $4;exit}' FS='[""]') && \
-  DOWNLOAD_URL=$(curl -sX GET "${RELEASE_URL}" | awk '/browser_download_url.*Ubuntu2404/{print $4;exit}' FS='[""]') && \
-  cd /tmp && \
-  curl -o \
-    /tmp/orca.app -L \
-    "${DOWNLOAD_URL}" && \
-  chmod +x /tmp/orca.app && \
-  ./orca.app --appimage-extract && \
-  mv squashfs-root /opt/orcaslicer && \
-  localedef -i en_GB -f UTF-8 en_GB.UTF-8 && \
+  echo "**** Install Anycubic slicer latest ****" && \
+  /bin/bash -c "$(curl -fsSL https://cdn-universe-slicer.anycubic.com/install/AnycubicSlicerNextInstaller.sh)"
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   apt-get autoclean && \
