@@ -31,7 +31,7 @@ RUN \
     libwebkit2gtk-4.1-0 \
     libwx-perl && \
   echo "**** Install Anycubic slicer latest ****" && \
-  echo -ne '1' | /bin/bash -c "$(curl -fsSL https://cdn-universe-slicer.anycubic.com/install/AnycubicSlicerNextInstaller.sh)" && \
+  echo -ne '1\n' | /bin/bash -c "$(curl -fsSL https://cdn-universe-slicer.anycubic.com/install/AnycubicSlicerNextInstaller.sh)" && \
   echo "**** cleanup ****" && \
   apt-get autoclean && \
   rm -rf \
