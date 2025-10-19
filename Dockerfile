@@ -46,6 +46,3 @@ RUN \
 EXPOSE 3001
 VOLUME /config
 VOLUME /tmp
-VOLUME /root
-
-CMD cd /config && /usr/bin/AnycubicSlicerNext
